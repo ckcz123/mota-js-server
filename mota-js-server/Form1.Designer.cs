@@ -32,13 +32,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,54 +86,14 @@
             this.panel1.Size = new System.Drawing.Size(200, 185);
             this.panel1.TabIndex = 3;
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 126);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "常用工具";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(13, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "便捷PS工具";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(107, 20);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "地图生成器";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(13, 60);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(116, 23);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "JS代码压缩工具";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(13, 100);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(152, 23);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "伤害和临界值计算器";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 163);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(185, 12);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "“常用工具”目录下的对应文件。";
             // 
             // label3
             // 
@@ -146,14 +106,54 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "如未能自动打开程序，可手动运行";
             // 
-            // label4
+            // button6
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 163);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(185, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "“常用工具”目录下的对应文件。";
+            this.button6.Location = new System.Drawing.Point(13, 100);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(152, 23);
+            this.button6.TabIndex = 4;
+            this.button6.Text = "伤害和临界值计算器";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(13, 60);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(116, 23);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "JS代码压缩工具";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(107, 20);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "地图生成器";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(13, 20);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "便捷PS工具";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(30, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "常用工具";
             // 
             // Form1
             // 
@@ -169,6 +169,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "本地服务器";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -9,16 +9,64 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Threading;
+using SimpleHttpServer;
+using SimpleHttpServer.Models;
+using SimpleHttpServer.RouteHandlers;
 
 
 namespace mota_js_server
 {
     public partial class Form1 : Form
     {
+        private Thread thread;
+
         public Form1()
         {
             InitializeComponent();
+
+            if (portInUse(1055))
+            {
+                label1.Text = "服务启动失败：1055端口已被占用！";
+            }
+            else
+            {
+                // 启动
+                HttpServer httpServer = new HttpServer(1055, new List<Route>()
+                {
+                    new Route()
+                    {
+                        Callable = new FileSystemRouteHandler() {BasePath = ".", ShowDirectories = true}.Handle,
+                        UrlRegex = "^/(.*)$",
+                        Method = "GET"
+                    },
+                    new Route()
+                    {
+                        Callable = MyRoute.route,
+                        UrlRegex = "^/(.*)$",
+                        Method = "POST"
+                    },
+                });
+                thread = new Thread(new ThreadStart(httpServer.Listen));
+                thread.Start();
+                label1.Text = "已启动服务：http://127.0.0.1:1055/";
+            }
         }
+
+        private bool portInUse(int port)
+        {
+            IPGlobalProperties ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
+            IPEndPoint[] ipEndPoints = ipGlobalProperties.GetActiveTcpListeners();
+            foreach (IPEndPoint ipEndPoint in ipEndPoints)
+            {
+                if (ipEndPoint.Port == port) return true;
+            }
+            return false;
+        }
+
 
         private bool checkChrome()
         {
@@ -98,6 +146,18 @@ namespace mota_js_server
                 return;
             }
             Process.Start("常用工具\\伤害和临界值计算器.exe");
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Environment.Exit(System.Environment.ExitCode);
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }
