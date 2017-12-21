@@ -16,8 +16,13 @@ namespace mota_js_server
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             foreach (string s in strings)
             {
-                string[] keyvalue = s.Split('=');
-                dictionary.Add(keyvalue[0], System.Web.HttpUtility.UrlDecode(keyvalue[1], Encoding.UTF8));
+                // string[] keyvalue = s.Split('=');
+                int index = s.IndexOf("=");
+                if (index > 0)
+                {
+                    dictionary.Add(s.Substring(0, index), s.Substring(index+1));
+                }
+                // dictionary.Add(keyvalue[0], System.Web.HttpUtility.UrlDecode(keyvalue[1], Encoding.UTF8));
             }
 
             Console.WriteLine(request.Path);
@@ -56,7 +61,7 @@ namespace mota_js_server
                 };
             }
             String text = File.ReadAllText(filename, Encoding.UTF8);
-            if (type == "base64") text = base64UrlEncode(text);
+            if (type == "base64") text = Convert.ToBase64String(Encoding.UTF8.GetBytes(text));
             return new HttpResponse()
             {
                 ContentAsUTF8 = text,
@@ -71,7 +76,7 @@ namespace mota_js_server
             if (type == null || !type.Equals("base64")) type = "utf8";
             string filename = dictionary["name"], content = dictionary["value"];
             if (type == "base64")
-                content = base64UrlDecode(content);
+                content = Encoding.UTF8.GetString(Convert.FromBase64String(content));
             File.WriteAllText(filename, content);
             return new HttpResponse()
             {
@@ -104,20 +109,5 @@ namespace mota_js_server
                 ReasonPhrase = "OK"
             };
         }
-
-        private static string base64UrlEncode(string content)
-        {
-            string text = Convert.ToBase64String(Encoding.UTF8.GetBytes(content));
-            return text.Replace('+', '/').Replace('-', '_').Replace("=", "");
-        }
-
-        private static string base64UrlDecode(string content)
-        {
-            string text = content.Replace('_','-').Replace('/','+');
-            int len = text.Length % 4;
-            if (len > 0) text += "====".Substring(len);
-            return Encoding.UTF8.GetString(Convert.FromBase64String(text));
-        }
-
     }
 }
