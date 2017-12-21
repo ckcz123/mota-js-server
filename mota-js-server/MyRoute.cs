@@ -11,7 +11,7 @@ namespace mota_js_server
     {
         public static HttpResponse route(HttpRequest request)
         {
-
+            Console.WriteLine(request.Content);
             string[] strings = request.Content.Split('&');
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             foreach (string s in strings)
@@ -60,11 +60,10 @@ namespace mota_js_server
                     ReasonPhrase = "Not found"
                 };
             }
-            String text = File.ReadAllText(filename, Encoding.UTF8);
-            if (type == "base64") text = Convert.ToBase64String(Encoding.UTF8.GetBytes(text));
+            byte[] bytes = File.ReadAllBytes(filename);
             return new HttpResponse()
             {
-                ContentAsUTF8 = text,
+                ContentAsUTF8 = type=="base64"?Convert.ToBase64String(bytes):Encoding.UTF8.GetString(bytes),
                 StatusCode = "200",
                 ReasonPhrase = "OK"
             };
@@ -75,12 +74,15 @@ namespace mota_js_server
             string type = dictionary["type"];
             if (type == null || !type.Equals("base64")) type = "utf8";
             string filename = dictionary["name"], content = dictionary["value"];
+            byte[] bytes;
             if (type == "base64")
-                content = Encoding.UTF8.GetString(Convert.FromBase64String(content));
-            File.WriteAllText(filename, content);
+                bytes = Convert.FromBase64String(content);
+            else
+                bytes = Encoding.UTF8.GetBytes(content);
+            File.WriteAllBytes(filename, bytes);
             return new HttpResponse()
             {
-                ContentAsUTF8 = Convert.ToString(content.Length),
+                ContentAsUTF8 = Convert.ToString(bytes.Length),
                 StatusCode = "200",
                 ReasonPhrase = "OK"
             };

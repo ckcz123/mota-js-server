@@ -12,25 +12,21 @@ namespace SimpleHttpServer
     {
         public static HttpResponse InternalServerError()
         {
-            string content = File.ReadAllText("Resources/Pages/500.html"); 
-
             return new HttpResponse()
             {
                 ReasonPhrase = "InternalServerError",
                 StatusCode = "500",
-                ContentAsUTF8 = content
+                ContentAsUTF8 = "Internal Server Error"
             };
         }
 
         public static HttpResponse NotFound()
         {
-            string content = File.ReadAllText("Resources/Pages/404.html");
-
             return new HttpResponse()
             {
                 ReasonPhrase = "NotFound",
                 StatusCode = "404",
-                ContentAsUTF8 = content
+                ContentAsUTF8 = "Not Found"
             };
         }
     }

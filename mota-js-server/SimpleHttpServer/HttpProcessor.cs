@@ -18,7 +18,7 @@ namespace SimpleHttpServer
 
         #region Fields
 
-        private static int MAX_POST_SIZE = 10 * 1024 * 1024; // 10MB
+        // private static int MAX_POST_SIZE = 10 * 1024 * 1024; // 10MB
 
         private List<Route> Routes = new List<Route>();
 
@@ -153,7 +153,7 @@ namespace SimpleHttpServer
             request.Route = route;
             try {
                 return route.Callable(request);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 // log.Error(ex);
                 return HttpBuilder.InternalServerError();
             }
@@ -216,7 +216,7 @@ namespace SimpleHttpServer
                     bytesLeft -= n;
                 }
 
-                content = Encoding.ASCII.GetString(bytes);
+                content = Encoding.UTF8.GetString(bytes);
             }
 
 

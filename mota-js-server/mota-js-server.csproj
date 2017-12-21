@@ -11,6 +11,7 @@
     <AssemblyName>mota-js-server</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>发布\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -69,6 +69,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyRoute.cs" />
+    <Compile Include="SimpleHttpServer\HttpBuilder.cs" />
+    <Compile Include="SimpleHttpServer\HttpProcessor.cs" />
+    <Compile Include="SimpleHttpServer\HttpServer.cs" />
+    <Compile Include="SimpleHttpServer\Models\HttpRequest.cs" />
+    <Compile Include="SimpleHttpServer\Models\HttpResponse.cs" />
+    <Compile Include="SimpleHttpServer\Models\Route.cs" />
+    <Compile Include="SimpleHttpServer\RouteHandlers\FileSystemRouteHandler.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +88,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -90,12 +98,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleHttpServer\SimpleHttpServer.csproj">
-      <Project>{9e139539-c272-488a-bfcf-caddf458df9d}</Project>
-      <Name>SimpleHttpServer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
