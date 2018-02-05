@@ -84,6 +84,7 @@ namespace mota_js_server
 
         private void openUrl(string url)
         {
+            
             if (checkChrome())
             {
                 try
@@ -95,6 +96,10 @@ namespace mota_js_server
                 {
                 }
             }
+
+            MessageBox.Show("你当前没有安装Chrome浏览器，使用其他浏览器可能会导致本程序闪退或无法正常工作，强烈推荐下载Chrome浏览器后再进行操作。",
+                "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
             Process.Start(url);
         }
 
@@ -146,6 +151,16 @@ namespace mota_js_server
                 return;
             }
             Process.Start("常用工具\\伤害和临界值计算器.exe");
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("常用工具\\RM动画导出器.exe"))
+            {
+                MessageBox.Show("找不到常用工具目录下的RM动画导出器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Process.Start("常用工具\\RM动画导出器.exe");
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

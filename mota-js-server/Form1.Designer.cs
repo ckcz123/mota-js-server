@@ -32,13 +32,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,8 +74,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
@@ -86,29 +84,9 @@
             this.panel1.Size = new System.Drawing.Size(200, 185);
             this.panel1.TabIndex = 3;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 163);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(185, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "“常用工具”目录下的对应文件。";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 142);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(185, 12);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "如未能自动打开程序，可手动运行";
-            // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(13, 100);
+            this.button6.Location = new System.Drawing.Point(13, 138);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(152, 23);
             this.button6.TabIndex = 4;
@@ -118,7 +96,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(13, 60);
+            this.button5.Location = new System.Drawing.Point(13, 98);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(116, 23);
             this.button5.TabIndex = 3;
@@ -155,6 +133,16 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "常用工具";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(13, 59);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(104, 23);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "RM动画导出器";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -171,7 +159,6 @@
             this.Text = "本地服务器";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,8 +175,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button7;
     }
 }
 
