@@ -41,7 +41,7 @@ namespace SimpleHttpServer
 
         public void Listen()
         {
-            this.Listener = new TcpListener(IPAddress.Any, this.Port);
+            this.Listener = new TcpListener(IPAddress.Loopback, this.Port);
             this.Listener.Start();
             while (this.IsActive)
             {

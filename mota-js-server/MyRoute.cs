@@ -25,7 +25,7 @@ namespace mota_js_server
                 // dictionary.Add(keyvalue[0], System.Web.HttpUtility.UrlDecode(keyvalue[1], Encoding.UTF8));
             }
 
-            Console.WriteLine(request.Path);
+            // Console.WriteLine(request.Path);
 
             if (request.Path.StartsWith("readFile"))
                 return readFileHandler(dictionary);
