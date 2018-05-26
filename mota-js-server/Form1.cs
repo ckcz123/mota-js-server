@@ -110,7 +110,7 @@ namespace mota_js_server
 
         private void button2_Click(object sender, EventArgs e)
         {
-            openUrl("http://127.0.0.1:1055/drawMapGUI.html");
+            openUrl("http://127.0.0.1:1055/editor.html");
         }
 
         private void button3_Click(object sender, EventArgs e)

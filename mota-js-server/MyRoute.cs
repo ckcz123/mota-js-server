@@ -11,7 +11,7 @@ namespace mota_js_server
     {
         public static HttpResponse route(HttpRequest request)
         {
-            Console.WriteLine(request.Content);
+            // Console.WriteLine(request.Content);
             string[] strings = request.Content.Split('&');
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             foreach (string s in strings)
@@ -103,7 +103,7 @@ namespace mota_js_server
             string[] filenames = Directory.GetFiles(name);
             for (int i = 0; i < filenames.Length; i++) filenames[i] = "\"" + Path.GetFileName(filenames[i]) + "\"";
             string content = "[" + string.Join(", ", filenames) + "]";
-            Console.WriteLine(content);
+            //Console.WriteLine(content);
             return new HttpResponse()
             {
                 ContentAsUTF8 = content,
