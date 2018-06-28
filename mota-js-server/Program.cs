@@ -13,6 +13,10 @@ namespace mota_js_server
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+            /*
             bool createdNew;
             System.Threading.Mutex instance = new System.Threading.Mutex(true, Application.ProductName, out createdNew);
             if (createdNew)
@@ -27,6 +31,7 @@ namespace mota_js_server
                 MessageBox.Show("您已启动了一个本地服务器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
+             * */
 
         }
     }

@@ -24,36 +24,46 @@ namespace mota_js_server
     {
         private Thread thread;
 
+        private int port;
+        private string url;
+
         public Form1()
         {
             InitializeComponent();
 
-            if (portInUse(1055))
+            port = 1055;
+            while (portInUse(port)) port++;
+
+            if (port > 1055)
             {
-                label1.Text = "服务启动失败：1055端口已被占用！";
+                MessageBox.Show("默认的1055端口已被占用，自动选择"+port+"端口。\n请注意，不同端口下的存档等信息都是不共用的。",
+                    "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else
+
+            url = "http://127.0.0.1:" + port + "/";
+
+            // 启动
+            HttpServer httpServer = new HttpServer(port, new List<Route>()
             {
-                // 启动
-                HttpServer httpServer = new HttpServer(1055, new List<Route>()
+                new Route()
                 {
-                    new Route()
-                    {
-                        Callable = new FileSystemRouteHandler() {BasePath = ".", ShowDirectories = true}.Handle,
-                        UrlRegex = "^/(.*)$",
-                        Method = "GET"
-                    },
-                    new Route()
-                    {
-                        Callable = MyRoute.route,
-                        UrlRegex = "^/(.*)$",
-                        Method = "POST"
-                    },
-                });
-                thread = new Thread(new ThreadStart(httpServer.Listen));
-                thread.Start();
-                label1.Text = "已启动服务：http://127.0.0.1:1055/";
-            }
+                    Callable = new FileSystemRouteHandler() {BasePath = ".", ShowDirectories = true}.Handle,
+                    UrlRegex = "^/(.*)$",
+                    Method = "GET"
+                },
+                new Route()
+                {
+                    Callable = MyRoute.route,
+                    UrlRegex = "^/(.*)$",
+                    Method = "POST"
+                },
+            });
+            thread = new Thread(new ThreadStart(httpServer.Listen));
+            thread.Start();
+            label1.Text = "已启动服务："+url;
+            // Current directory name
+            label3.Text = "当前目录："+Path.GetFileName(Directory.GetCurrentDirectory());
+            
         }
 
         private bool portInUse(int port)
@@ -105,12 +115,12 @@ namespace mota_js_server
 
         private void button1_Click(object sender, EventArgs e)
         {
-            openUrl("http://127.0.0.1:1055/index.html");
+            openUrl(url + "index.html");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            openUrl("http://127.0.0.1:1055/editor.html");
+            openUrl(url + "editor.html");
         }
 
         private void button3_Click(object sender, EventArgs e)
