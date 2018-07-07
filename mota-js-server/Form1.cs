@@ -165,12 +165,12 @@ namespace mota_js_server
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (!File.Exists("常用工具\\RM动画导出器.exe"))
+            if (!File.Exists("常用工具\\怪物数据导出器.exe"))
             {
-                MessageBox.Show("找不到常用工具目录下的RM动画导出器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("找不到常用工具目录下的怪物数据导出器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Process.Start("常用工具\\RM动画导出器.exe");
+            Process.Start("常用工具\\怪物数据导出器.exe");
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -183,6 +183,16 @@ namespace mota_js_server
             {
 
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("常用工具\\RM动画导出器.exe"))
+            {
+                MessageBox.Show("找不到常用工具目录下的RM动画导出器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Process.Start("常用工具\\RM动画导出器.exe");
         }
     }
 }

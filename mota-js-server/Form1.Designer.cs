@@ -39,6 +39,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +76,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button8);
             this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button5);
@@ -89,9 +91,9 @@
             // 
             this.button7.Location = new System.Drawing.Point(13, 59);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(104, 23);
+            this.button7.Size = new System.Drawing.Size(88, 23);
             this.button7.TabIndex = 5;
-            this.button7.Text = "RM动画导出器";
+            this.button7.Text = "怪物数据导出";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -152,6 +154,16 @@
             this.label3.Size = new System.Drawing.Size(0, 12);
             this.label3.TabIndex = 4;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(107, 59);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 6;
+            this.button8.Text = "RM动画导出";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -187,6 +199,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button8;
     }
 }
 
