@@ -33,6 +33,9 @@ namespace mota_js_server
             if (request.Path.StartsWith("writeFile"))
                 return writeFileHandler(dictionary);
 
+            if (request.Path.StartsWith("writeMultiFiles"))
+                return writeMultiFilesHandler(dictionary);
+
             if (request.Path.StartsWith("listFile"))
                 return listFileHandler(dictionary);
             
@@ -83,6 +86,28 @@ namespace mota_js_server
             return new HttpResponse()
             {
                 ContentAsUTF8 = Convert.ToString(bytes.Length),
+                StatusCode = "200",
+                ReasonPhrase = "OK"
+            };
+        }
+
+        private static HttpResponse writeMultiFilesHandler(Dictionary<String, String> dictionary)
+        {
+            string filename = dictionary["name"], content = dictionary["value"];
+
+            string[] filenames = filename.Split(';'), contents = content.Split(';');
+            long length = 0;
+            for (int i = 0; i < filenames.Length; ++i)
+            {
+                if (i >= contents.Length) continue;
+                byte[] bytes = Convert.FromBase64String(contents[i]);
+                length += bytes.LongLength;
+                File.WriteAllBytes(filenames[i], bytes);
+            }
+
+            return new HttpResponse()
+            {
+                ContentAsUTF8 = Convert.ToString(length),
                 StatusCode = "200",
                 ReasonPhrase = "OK"
             };
