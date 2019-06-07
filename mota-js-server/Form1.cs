@@ -194,5 +194,15 @@ namespace mota_js_server
             }
             Process.Start("常用工具\\RM动画导出器.exe");
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("常用工具\\额外素材合并工具.exe"))
+            {
+                MessageBox.Show("找不到常用工具目录下的额外素材合并工具！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Process.Start("常用工具\\额外素材合并工具.exe");
+        }
     }
 }
