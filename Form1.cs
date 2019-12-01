@@ -205,7 +205,22 @@ namespace mota_js_server
             Process.Start("常用工具\\额外素材合并工具.exe");
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void button11_Click_1(object sender, EventArgs e)
+        {
+            if (!File.Exists("常用工具\\怪物数据生成机.exe"))
+            {
+                DialogResult dr = MessageBox.Show("因为一些原因，该工具并没有包含在样版内。\n您可以通过外部链接自行下载该工具。\n" +
+                    "下载完成后将exe文件放于'常用工具'目录下后便可以通过本按钮来使用。\n确定要现在下载吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dr == DialogResult.OK)
+                {
+                    Process.Start("https://pan.baidu.com/s/1w-JMg-ZPRvbsqbbtOwORGA");
+                }
+                return;
+            }
+            Process.Start("常用工具\\怪物数据生成机.exe");
+        }
+
+        private void button10_Click_1(object sender, EventArgs e)
         {
             if (!File.Exists("常用工具\\动画编辑器.exe"))
             {
@@ -213,16 +228,6 @@ namespace mota_js_server
                 return;
             }
             Process.Start("常用工具\\动画编辑器.exe");
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            if (!File.Exists("常用工具\\怪物数据生成机.exe"))
-            {
-                MessageBox.Show("找不到常用工具目录下的怪物数据生成机！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            Process.Start("常用工具\\怪物数据生成机.exe");
         }
     }
 }
