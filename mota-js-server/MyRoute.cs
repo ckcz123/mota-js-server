@@ -38,7 +38,16 @@ namespace mota_js_server
 
             if (request.Path.StartsWith("listFile"))
                 return listFileHandler(dictionary);
-            
+
+            if (request.Path.StartsWith("makeDir"))
+                return makeDirHandler(dictionary);
+
+            if (request.Path.StartsWith("moveFile"))
+                return moveFileHandler(dictionary);
+
+            if (request.Path.StartsWith("deleteFile"))
+                return deleteFileHandler(dictionary);
+
             return new HttpResponse()
             {
                 ContentAsUTF8 = "Request Not found.",
@@ -132,6 +141,79 @@ namespace mota_js_server
             return new HttpResponse()
             {
                 ContentAsUTF8 = content,
+                StatusCode = "200",
+                ReasonPhrase = "OK"
+            };
+        }
+
+        private static HttpResponse makeDirHandler(Dictionary<string, string> dictionary)
+        {
+            string name = dictionary["name"];
+            if (Directory.Exists(name))
+            {
+                return new HttpResponse()
+                {
+                    ContentAsUTF8 = "Directory Already Exists!",
+                    StatusCode = "200",
+                    ReasonPhrase = "OK"
+                };
+            }
+            Directory.CreateDirectory(name);
+            return new HttpResponse()
+            {
+                ContentAsUTF8 = "Make Directory Success",
+                StatusCode = "200",
+                ReasonPhrase = "OK"
+            };
+        }
+
+        private static HttpResponse moveFileHandler(Dictionary<String, String> dictionary)
+        {
+            string src = dictionary["src"];
+            string dest = dictionary["dest"];
+            if (src == null || !File.Exists(src))
+            {
+                return new HttpResponse()
+                {
+                    ContentAsUTF8 = "File Not Exists!",
+                    StatusCode = "404",
+                    ReasonPhrase = "Not found"
+                };
+            }
+            if (dest == null)
+            {
+                return new HttpResponse()
+                {
+                    ContentAsUTF8 = "Must Provide Destination!",
+                    StatusCode = "404",
+                    ReasonPhrase = "Not found"
+                };
+            }
+            File.Move(src, dest);
+            return new HttpResponse()
+            {
+                ContentAsUTF8 = "Move Success",
+                StatusCode = "200",
+                ReasonPhrase = "OK"
+            };
+        }
+
+        private static HttpResponse deleteFileHandler(Dictionary<String, String> dictionary)
+        {
+            string filename = dictionary["name"];
+            if (filename == null || !File.Exists(filename))
+            {
+                return new HttpResponse()
+                {
+                    ContentAsUTF8 = "File Not Exists!",
+                    StatusCode = "404",
+                    ReasonPhrase = "Not found"
+                };
+            }
+            File.Delete(filename);
+            return new HttpResponse()
+            {
+                ContentAsUTF8 = "Delete Success",
                 StatusCode = "200",
                 ReasonPhrase = "OK"
             };

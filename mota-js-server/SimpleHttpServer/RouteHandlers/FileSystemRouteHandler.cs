@@ -74,7 +74,9 @@ namespace SimpleHttpServer.RouteHandlers
             var response = new HttpResponse();
             response.StatusCode = "200";
             response.ReasonPhrase = "Ok";
-            response.Headers["Content-Type"] = QuickMimeTypeMapper.GetMimeType(file_extension);
+            String mimeType = QuickMimeTypeMapper.GetMimeType(file_extension);
+            if (mimeType.StartsWith("audio/")) response.Headers["Accept-Ranges"] = "bytes";
+            response.Headers["Content-Type"] = mimeType;
             response.Content = File.ReadAllBytes(local_path);
 
             return response;
