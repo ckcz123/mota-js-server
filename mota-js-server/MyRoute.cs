@@ -198,10 +198,26 @@ namespace mota_js_server
             };
         }
 
+        private static void deleteFile(string path)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            else if (Directory.Exists(path))
+            {
+                foreach (string f in Directory.GetFileSystemEntries(path))
+                {
+                    deleteFile(f);
+                }
+                Directory.Delete(path);
+            }
+        }
+
         private static HttpResponse deleteFileHandler(Dictionary<String, String> dictionary)
         {
             string filename = dictionary["name"];
-            if (filename == null || !File.Exists(filename))
+            if (filename == null || !(File.Exists(filename) || Directory.Exists(filename)))
             {
                 return new HttpResponse()
                 {
@@ -210,7 +226,7 @@ namespace mota_js_server
                     ReasonPhrase = "Not found"
                 };
             }
-            File.Delete(filename);
+            deleteFile(filename);
             return new HttpResponse()
             {
                 ContentAsUTF8 = "Delete Success",
