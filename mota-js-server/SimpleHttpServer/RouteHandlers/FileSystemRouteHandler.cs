@@ -56,7 +56,13 @@ namespace SimpleHttpServer.RouteHandlers
                 
             if (ShowDirectories && Directory.Exists(local_path)) {
                 // Console.WriteLine("FileSystemRouteHandler Dir {0}",local_path);
-                return Handle_LocalDir(request, local_path);
+                // return Handle_LocalDir(request, local_path);
+                if (!local_path.EndsWith("/"))
+                {
+                    local_path += "/";
+                }
+                local_path += "index.html";
+                return Handle_LocalFile(request, local_path);
             } else if (FileExistsCaseSensitive(local_path)) {
                 // Console.WriteLine("FileSystemRouteHandler File {0}", local_path);
                 return Handle_LocalFile(request, local_path);
