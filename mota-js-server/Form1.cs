@@ -204,5 +204,20 @@ namespace mota_js_server
             }
             Process.Start("常用工具\\额外素材合并工具.exe");
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("常用工具\\动画编辑器.exe"))
+            {
+                MessageBox.Show("找不到常用工具目录下的动画编辑器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Process.Start("常用工具\\动画编辑器.exe");
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            openUrl(url + "_docs/");
+        }
     }
 }
