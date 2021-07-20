@@ -189,7 +189,14 @@ namespace mota_js_server
                     ReasonPhrase = "Not found"
                 };
             }
-            File.Move(src, dest);
+            if (!Path.Equals(src, dest))
+            {
+                if (File.Exists(dest) && !Path.Equals(src, dest))
+                {
+                    File.Delete(dest);
+                }
+                File.Move(src, dest);
+            }
             return new HttpResponse()
             {
                 ContentAsUTF8 = "Move Success",
