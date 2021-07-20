@@ -27,6 +27,8 @@ namespace mota_js_server
         private int port;
         private string url;
 
+        private bool showError = true;
+
         public Form1()
         {
             InitializeComponent();
@@ -107,8 +109,12 @@ namespace mota_js_server
                 }
             }
 
-            MessageBox.Show("你当前没有安装Chrome浏览器，使用其他浏览器可能会导致本程序闪退或无法正常工作，强烈推荐下载Chrome浏览器后再进行操作。",
-                "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (showError)
+            {
+                MessageBox.Show("你当前没有安装Chrome浏览器，使用其他浏览器可能会导致本程序闪退或无法正常工作，强烈推荐下载Chrome浏览器后再进行操作。",
+                    "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                showError = false;
+            }
 
             Process.Start(url);
         }
@@ -135,12 +141,12 @@ namespace mota_js_server
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (!File.Exists("常用工具\\地图生成器.exe"))
+            if (!File.Exists("常用工具\\截图识别器.exe"))
             {
-                MessageBox.Show("找不到常用工具目录下的地图生成器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("找不到常用工具目录下的截图识别器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Process.Start("常用工具\\地图生成器.exe");
+            Process.Start("常用工具\\截图识别器.exe");
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -193,16 +199,6 @@ namespace mota_js_server
                 return;
             }
             Process.Start("常用工具\\RM动画导出器.exe");
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            if (!File.Exists("常用工具\\额外素材合并工具.exe"))
-            {
-                MessageBox.Show("找不到常用工具目录下的额外素材合并工具！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            Process.Start("常用工具\\额外素材合并工具.exe");
         }
 
         private void button10_Click(object sender, EventArgs e)
