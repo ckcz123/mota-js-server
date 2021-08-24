@@ -46,13 +46,12 @@ namespace SimpleHttpServer
             while (this.IsActive)
             {
                 TcpClient s = this.Listener.AcceptTcpClient();
-                Thread thread = new Thread(() =>
-                {
-                    this.Processor.HandleClient(s);
-                });
-                thread.Start();
-                Thread.Sleep(1);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(Process), s);
             }
+        }
+        private void Process(object s)
+        {
+            this.Processor.HandleClient((TcpClient) s);
         }
 
         #endregion
