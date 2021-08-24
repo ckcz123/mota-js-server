@@ -4,12 +4,72 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using SimpleHttpServer.Models;
+using SimpleHttpServer.RouteHandlers;
 
 namespace mota_js_server
 {
     class MyRoute
     {
-        public static HttpResponse route(HttpRequest request)
+        private FileSystemRouteHandler handler = new FileSystemRouteHandler() { BasePath = ".", ShowDirectories = true };
+
+        public HttpResponse getHandler(HttpRequest request)
+        {
+            if (request.Path.StartsWith("__all_floors__.js"))
+            {
+                var ids = request.Path.IndexOf("&id=");
+                if (ids >= 0)
+                {
+                    string[] floorIds = request.Path.Substring(ids + 4).Split(',');
+                    var content = "";
+                    foreach (string floorId in floorIds)
+                    {
+                        string filename = "project/floors/" + floorId + ".js";
+                        if (!File.Exists(filename))
+                        {
+                            return new HttpResponse()
+                            {
+                                ContentAsUTF8 = "Request Not found.",
+                                ReasonPhrase = "Not Found",
+                                StatusCode = "404",
+                            };
+                        }
+                        content += File.ReadAllText(filename, Encoding.UTF8) + "\n";
+                    }
+                    return new HttpResponse()
+                    {
+                        ContentAsUTF8 = content,
+                        StatusCode = "200",
+                        ReasonPhrase = "OK"
+                    };
+                }
+            }
+
+            if (request.Path.StartsWith("__all_animates__"))
+            {
+                var ids = request.Path.IndexOf("&id=");
+                if (ids >= 0)
+                {
+                    string[] floorIds = request.Path.Substring(ids + 4).Split(',');
+                    var content = new List<string>();
+                    foreach (string floorId in floorIds)
+                    {
+                        string filename = "project/animates/" + floorId + ".animate";
+                        content.Add(File.Exists(filename) ? File.ReadAllText(filename, Encoding.UTF8) : "");
+                    }
+                    return new HttpResponse()
+                    {
+                        ContentAsUTF8 = string.Join("@@@~~~###~~~@@@", content),
+                        StatusCode = "200",
+                        ReasonPhrase = "OK"
+                    };
+                }
+            }
+
+
+            return handler.Handle(request);
+        }
+
+        public HttpResponse postHandler(HttpRequest request)
         {
             // Console.WriteLine(request.Content);
             string[] strings = request.Content.Split('&');

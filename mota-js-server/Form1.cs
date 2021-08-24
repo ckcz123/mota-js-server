@@ -44,18 +44,20 @@ namespace mota_js_server
 
             url = "http://127.0.0.1:" + port + "/";
 
+            MyRoute myRoute = new MyRoute();
+
             // 启动
             HttpServer httpServer = new HttpServer(port, new List<Route>()
             {
                 new Route()
                 {
-                    Callable = new FileSystemRouteHandler() {BasePath = ".", ShowDirectories = true}.Handle,
+                    Callable = myRoute.getHandler,
                     UrlRegex = "^/(.*)$",
                     Method = "GET"
                 },
                 new Route()
                 {
-                    Callable = MyRoute.route,
+                    Callable = myRoute.postHandler,
                     UrlRegex = "^/(.*)$",
                     Method = "POST"
                 },
