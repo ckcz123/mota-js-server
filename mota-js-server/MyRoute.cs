@@ -65,12 +65,31 @@ namespace mota_js_server
                 }
             }
 
+            if (request.Path.StartsWith("favicon.ico"))
+            {
+                return new HttpResponse()
+                {
+                    ContentAsUTF8 = "",
+                    StatusCode = "200",
+                    ReasonPhrase = "OK"
+                };
+            }
 
             return handler.Handle(request);
         }
 
         public HttpResponse postHandler(HttpRequest request)
         {
+            if (request.Path.StartsWith("games/upload.php"))
+            {
+                return new HttpResponse()
+                {
+                    ContentAsUTF8 = "",
+                    StatusCode = "200",
+                    ReasonPhrase = "OK"
+                };
+            }
+
             // Console.WriteLine(request.Content);
             string[] strings = request.Content.Split('&');
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
@@ -125,6 +144,16 @@ namespace mota_js_server
             string filename = dictionary["name"];
             if (filename == null || !File.Exists(filename))
             {
+                if (filename.StartsWith("_saves/"))
+                {
+                    return new HttpResponse()
+                    {
+                        ContentAsUTF8 = "",
+                        StatusCode = "200",
+                        ReasonPhrase = "OK"
+                    };
+                }
+
                 return new HttpResponse()
                 {
                     ContentAsUTF8 = "File Not Exists!",
